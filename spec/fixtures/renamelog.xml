@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yguard version="1.5">
+<!--
+  yGuard Bytecode Obfuscator, v2.1.0, a Product of yWorks GmbH - http://www.yworks.com
+
+  Logfile created on Wed Jun 10 11:22:38 BRT 2009
+
+  Jar file to be obfuscated:           yguard_temp_5859776966693757615.jar
+  Target Jar file for obfuscated code: Wallpaperer.jar
+
+-->
+<!--
+  Memory in use after class data structure built: 2349376 bytes
+  Total memory available                        : 6647808 bytes
+-->
+<expose>
+  <class name="com.hvilela.Wallpaperer"/>
+  <method class="com.hvilela.Wallpaperer" name="void main(java.lang.String[])"/>
+</expose>
+<map>
+  <package name="com.hvilela.drawer" map="A"/>
+  <class name="com.hvilela.drawer.Columns" map="A"/>
+  <method class="com.hvilela.drawer.Columns" name="boolean splitHorizontally(double)" map="A"/>
+  <class name="com.hvilela.drawer.Lines" map="B"/>
+  <method class="com.hvilela.drawer.Lines" name="boolean splitHorizontally(double)" map="A"/>
+  <class name="com.hvilela.drawer.Boxes" map="C"/>
+  <method class="com.hvilela.drawer.Boxes" name="java.awt.image.BufferedImage draw(java.awt.image.BufferedImage, java.util.List)" map="A"/>
+  <method class="com.hvilela.drawer.Boxes" name="void draw(java.awt.image.BufferedImage, java.util.List, int, int, int, int)" map="A"/>
+  <method class="com.hvilela.drawer.Boxes" name="boolean splitHorizontally(double)" map="A"/>
+  <package name="com.hvilela.filters" map="B"/>
+  <class name="com.hvilela.filters.GrayscaleFilter" map="A"/>
+  <method class="com.hvilela.filters.GrayscaleFilter" name="int filterRGB(int, int, int)" map="filterRGB"/>
+  <class name="com.hvilela.filters.SepiaFilter" map="B"/>
+  <field class="com.hvilela.filters.SepiaFilter" name="depth" map="A"/>
+  <method class="com.hvilela.filters.SepiaFilter" name="int filterRGB(int, int, int)" map="filterRGB"/>
+  <class name="com.hvilela.Entry" map="A"/>
+  <field class="com.hvilela.Entry" name="file" map="A"/>
+  <field class="com.hvilela.Entry" name="weight" map="B"/>
+  <field class="com.hvilela.Entry" name="image" map="C"/>
+  <method class="com.hvilela.Entry" name="java.awt.image.BufferedImage getImage()" map="A"/>
+  <method class="com.hvilela.Entry" name="int compareTo(com.hvilela.Entry)" map="A"/>
+  <method class="com.hvilela.Entry" name="void setWeight(int)" map="A"/>
+  <method class="com.hvilela.Entry" name="int compareTo(java.lang.Object)" map="compareTo"/>
+  <method class="com.hvilela.Entry" name="int getWeight()" map="B"/>
+  <class name="com.hvilela.Wallpaperer$6" map="6"/>
+  <field class="com.hvilela.Wallpaperer$6" name="this$0" map="A"/>
+  <method class="com.hvilela.Wallpaperer$6" name="void paint(java.awt.Graphics)" map="paint"/>
+  <class name="com.hvilela.Wallpaperer$5" map="5"/>
+  <field class="com.hvilela.Wallpaperer$5" name="this$0" map="A"/>
+  <method class="com.hvilela.Wallpaperer$5" name="void actionPerformed(java.awt.event.ActionEvent)" map="actionPerformed"/>
+  <class name="com.hvilela.Wallpaperer$4" map="4"/>
+  <field class="com.hvilela.Wallpaperer$4" name="this$0" map="A"/>
+  <method class="com.hvilela.Wallpaperer$4" name="void actionPerformed(java.awt.event.ActionEvent)" map="actionPerformed"/>
+  <class name="com.hvilela.Wallpaperer$3" map="3"/>
+  <field class="com.hvilela.Wallpaperer$3" name="this$0" map="A"/>
+  <method class="com.hvilela.Wallpaperer$3" name="void actionPerformed(java.awt.event.ActionEvent)" map="actionPerformed"/>
+  <class name="com.hvilela.Wallpaperer$2" map="2"/>
+  <field class="com.hvilela.Wallpaperer$2" name="this$0" map="A"/>
+  <method class="com.hvilela.Wallpaperer$2" name="void actionPerformed(java.awt.event.ActionEvent)" map="actionPerformed"/>
+  <class name="com.hvilela.Wallpaperer$1" map="1"/>
+  <field class="com.hvilela.Wallpaperer$1" name="this$0" map="A"/>
+  <method class="com.hvilela.Wallpaperer$1" name="void actionPerformed(java.awt.event.ActionEvent)" map="actionPerformed"/>
+  <class name="com.hvilela.Wallpaperer$8" map="8"/>
+  <field class="com.hvilela.Wallpaperer$8" name="this$0" map="A"/>
+  <method class="com.hvilela.Wallpaperer$8" name="void run()" map="run"/>
+  <class name="com.hvilela.Wallpaperer$7" map="7"/>
+  <field class="com.hvilela.Wallpaperer$7" name="this$0" map="A"/>
+  <method class="com.hvilela.Wallpaperer$7" name="boolean canImport(javax.swing.JComponent, java.awt.datatransfer.DataFlavor[])" map="canImport"/>
+  <method class="com.hvilela.Wallpaperer$7" name="boolean importData(javax.swing.JComponent, java.awt.datatransfer.Transferable)" map="importData"/>
+  <field class="com.hvilela.Wallpaperer" name="progress" map="A"/>
+  <field class="com.hvilela.Wallpaperer" name="files" map="B"/>
+  <field class="com.hvilela.Wallpaperer" name="filter" map="C"/>
+  <field class="com.hvilela.Wallpaperer" name="serialVersionUID" map="D"/>
+  <field class="com.hvilela.Wallpaperer" name="filters" map="E"/>
+  <field class="com.hvilela.Wallpaperer" name="drawer" map="F"/>
+  <field class="com.hvilela.Wallpaperer" name="directory" map="G"/>
+  <field class="com.hvilela.Wallpaperer" name="borderSpinner" map="H"/>
+  <field class="com.hvilela.Wallpaperer" name="widthSpinner" map="I"/>
+  <field class="com.hvilela.Wallpaperer" name="heightSpinner" map="J"/>
+  <field class="com.hvilela.Wallpaperer" name="drawers" map="K"/>
+  <field class="com.hvilela.Wallpaperer" name="result" map="L"/>
+  <method class="com.hvilela.Wallpaperer" name="void updateProperties()" map="A"/>
+  <method class="com.hvilela.Wallpaperer" name="void actionPerformed(java.awt.event.ActionEvent)" map="actionPerformed"/>
+  <method class="com.hvilela.Wallpaperer" name="void stateChanged(javax.swing.event.ChangeEvent)" map="stateChanged"/>
+  <method class="com.hvilela.Wallpaperer" name="javax.swing.JDialog access$2(com.hvilela.Wallpaperer)" map="A"/>
+  <method class="com.hvilela.Wallpaperer" name="void draw()" map="B"/>
+  <method class="com.hvilela.Wallpaperer" name="void addDirectory(java.io.File)" map="A"/>
+  <method class="com.hvilela.Wallpaperer" name="javax.swing.JSpinner access$1(com.hvilela.Wallpaperer)" map="B"/>
+  <method class="com.hvilela.Wallpaperer" name="void addFile(java.io.File)" map="B"/>
+  <method class="com.hvilela.Wallpaperer" name="javax.swing.JSpinner access$0(com.hvilela.Wallpaperer)" map="C"/>
+  <class name="com.hvilela.Drawer" map="B"/>
+  <field class="com.hvilela.Drawer" name="border" map="A"/>
+  <method class="com.hvilela.Drawer" name="java.awt.image.BufferedImage draw(java.awt.image.BufferedImage, java.util.List)" map="A"/>
+  <method class="com.hvilela.Drawer" name="void draw(java.awt.image.BufferedImage, com.hvilela.Entry, int, int, int, int)" map="A"/>
+  <method class="com.hvilela.Drawer" name="java.awt.image.BufferedImage draw(int, int, java.util.List)" map="A"/>
+  <class name="com.hvilela.AboutWindow" map="C"/>
+  <method class="com.hvilela.AboutWindow" name="void hyperlinkUpdate(javax.swing.event.HyperlinkEvent)" map="hyperlinkUpdate"/>
+</map>
+</yguard>

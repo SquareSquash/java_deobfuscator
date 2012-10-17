@@ -1,0 +1,144 @@
+com.example.account.manager.client.AddFoodLog -> com.example.account.manager.client.AddFoodLog:
+    java.lang.String TAG -> h
+    android.os.Handler handler -> a
+    java.lang.String token -> b
+    android.widget.EditText logDate -> c
+    android.widget.Spinner spinner -> i
+    java.lang.String time -> d
+    android.widget.EditText food -> e
+    android.widget.EditText kcal -> f
+    android.widget.EditText salt -> g
+    android.widget.Button postButton -> j
+    void onCreate(android.os.Bundle) -> onCreate
+    java.lang.String access$0() -> a
+com.example.account.manager.client.AddFoodLog$1 -> com.example.account.manager.client.k:
+    com.example.account.manager.client.AddFoodLog this$0 -> a
+    void onItemSelected(android.widget.AdapterView,android.view.View,int,long) -> onItemSelected
+    void onNothingSelected(android.widget.AdapterView) -> onNothingSelected
+com.example.account.manager.client.AddFoodLog$AddFoodLogListener -> com.example.account.manager.client.j:
+    com.example.account.manager.client.AddFoodLog this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.example.account.manager.client.AddFoodLog$InvalidateTokenListener -> com.example.account.manager.client.b:
+    com.example.account.manager.client.AddFoodLog this$0 -> a
+    void invalidate() -> a
+com.example.account.manager.client.AddFoodLog$InvalidateTokenListener$1 -> com.example.account.manager.client.e:
+    com.example.account.manager.client.AddFoodLog$InvalidateTokenListener this$1 -> a
+    void run() -> run
+com.example.account.manager.client.AsyncCookie -> com.example.account.manager.client.f:
+    java.lang.String TAG -> a
+    android.content.Context context -> b
+    org.apache.http.impl.client.DefaultHttpClient client -> c
+    java.lang.String token -> d
+    com.example.account.manager.client.TokenListener listener -> e
+    android.os.AsyncTask next -> f
+    android.app.ProgressDialog dialog -> g
+    boolean isValidCookie -> h
+    void onPreExecute() -> onPreExecute
+    java.lang.Void doInBackground$10299ca() -> a
+    void onPostExecute(java.lang.Object) -> onPostExecute
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.example.account.manager.client.AsyncPost -> com.example.account.manager.client.d:
+    java.lang.String TAG -> a
+    android.app.ProgressDialog dialog -> b
+    android.content.Context context -> c
+    org.apache.http.impl.client.DefaultHttpClient client -> d
+    java.lang.String logDate -> e
+    java.lang.String time -> f
+    java.lang.String food -> g
+    java.lang.String kcal -> h
+    java.lang.String salt -> i
+    void onPreExecute() -> onPreExecute
+    java.lang.Void doInBackground$10299ca() -> a
+    void onPostExecute(java.lang.Object) -> onPostExecute
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.example.account.manager.client.AsyncUpdate -> com.example.account.manager.client.h:
+    java.lang.String TAG -> a
+    android.content.Context context -> b
+    org.apache.http.impl.client.DefaultHttpClient client -> c
+    java.lang.String token -> d
+    android.app.ProgressDialog dialog -> e
+    java.lang.String content -> f
+    org.json.JSONArray array -> g
+    java.util.List logList -> h
+    android.widget.ListView view -> i
+    java.lang.Void doInBackground$10299ca() -> a
+    void content2FoodLogs(java.lang.String) -> a
+    void onPostExecute(java.lang.Object) -> onPostExecute
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.example.account.manager.client.FoodLogAdapter -> com.example.account.manager.client.a:
+    android.view.LayoutInflater inflater -> a
+    java.util.List foodLogList -> b
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+com.example.account.manager.client.Main -> com.example.account.manager.client.Main:
+    java.lang.String TAG -> d
+    android.os.Handler handler -> a
+    org.apache.http.impl.client.DefaultHttpClient client -> b
+    android.accounts.Account account -> e
+    java.lang.String authToken -> c
+    void onCreate(android.os.Bundle) -> onCreate
+    void startSelectAccount() -> b
+    void getAuthToken() -> c
+    void onResume() -> onResume
+    boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    java.lang.String access$0() -> a
+com.example.account.manager.client.Main$InvalidateTokenListener -> com.example.account.manager.client.i:
+    com.example.account.manager.client.Main this$0 -> a
+    void invalidate() -> a
+com.example.account.manager.client.Main$InvalidateTokenListener$1 -> com.example.account.manager.client.n:
+    com.example.account.manager.client.Main$InvalidateTokenListener this$1 -> a
+    void run() -> run
+com.example.account.manager.client.Main$NutrimancerCallback -> com.example.account.manager.client.c:
+    com.example.account.manager.client.Main this$0 -> a
+    void run(android.accounts.AccountManagerFuture) -> run
+com.example.account.manager.client.SelectAccount -> com.example.account.manager.client.SelectAccount:
+    android.accounts.Account[] accounts -> a
+    void onCreate(android.os.Bundle) -> onCreate
+    void saveToPreference(java.lang.String) -> a
+    void onListItemClick(android.widget.ListView,android.view.View,int,long) -> onListItemClick
+com.example.account.manager.client.SelectAccount$1 -> com.example.account.manager.client.l:
+    com.example.account.manager.client.SelectAccount this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.example.account.manager.client.SelectAccount$2 -> com.example.account.manager.client.m:
+    com.example.account.manager.client.SelectAccount this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.example.account.manager.client.TokenListener -> com.example.account.manager.client.g:
+    void invalidate() -> a
+com.example.account.manager.client.provider.FoodLog -> com.example.account.manager.client.provider.b:
+    java.text.SimpleDateFormat DF -> a
+    java.text.SimpleDateFormat DTF -> b
+    long id -> c
+    java.lang.String key -> d
+    long version -> e
+    java.lang.String user -> f
+    java.lang.String logDate -> g
+    java.lang.String time -> h
+    java.lang.String food -> i
+    double kcal -> j
+    double salt -> k
+    java.lang.String createDate -> l
+    java.lang.String getLogDate() -> a
+    java.lang.String getTime() -> b
+    java.lang.String getFood() -> c
+    double getKcal() -> d
+    double getSalt() -> e
+com.example.account.manager.client.provider.FoodLogProvider -> com.example.account.manager.client.provider.FoodLogProvider:
+    java.lang.String AUTHORITY -> a
+    android.net.Uri CONTENT_URI -> b
+    java.lang.String[] COLUMNS -> c
+    android.content.UriMatcher matcher -> d
+    com.example.account.manager.client.provider.FoodLogProvider$Helper helper -> e
+    boolean onCreate() -> onCreate
+    java.lang.String getType(android.net.Uri) -> getType
+    long parseId(android.net.Uri) -> a
+    java.lang.String createSelection(android.net.Uri,java.lang.String) -> a
+    java.lang.String[] createArgs(android.net.Uri,java.lang.String[]) -> a
+    int delete(android.net.Uri,java.lang.String,java.lang.String[]) -> delete
+    android.net.Uri insert(android.net.Uri,android.content.ContentValues) -> insert
+    android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String) -> query
+    int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[]) -> update
+com.example.account.manager.client.provider.FoodLogProvider$Helper -> com.example.account.manager.client.provider.a:
+    com.example.account.manager.client.provider.FoodLogProvider this$0 -> a
+    void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
+    void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
