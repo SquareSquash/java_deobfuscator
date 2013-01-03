@@ -81,13 +81,28 @@ describe Squash::Java::Namespace do
       meth.name.should eql('finagle')
       meth.obfuscation.should eql('a')
       meth.klass.full_name.should eql('com.foo.Bar')
-      meth.return_type.full_name.should eql('com.foo.Bar')
+      meth.return_type.to_s.should eql('com.foo.Bar')
 
       meth.arguments.size.should eql(2)
       meth.arguments.first.type.full_name.should eql('com.foo.Bar')
-      meth.arguments.first.should_not be_array
+      meth.arguments.first.dimensionality.should eql(0)
       meth.arguments.last.type.full_name.should eql('int')
-      meth.arguments.last.should be_array
+      meth.arguments.last.dimensionality.should eql(1)
+    end
+    
+    it "should handle vector values appropriately" do
+      cl   = @namespace.add_class_alias('com.foo.Bar', 'A')
+      meth = @namespace.add_method_alias(cl, 'int[][] finagle(com.foo.Bar)', 'a')
+      
+      meth.should be_kind_of(Squash::Java::Method)
+      meth.name.should eql('finagle')
+      meth.obfuscation.should eql('a')
+      meth.klass.full_name.should eql('com.foo.Bar')
+      meth.return_type.to_s.should eql('int[][]')
+
+      meth.arguments.size.should eql(1)
+      meth.arguments.first.type.full_name.should eql('com.foo.Bar')
+      meth.arguments.first.dimensionality.should eql(0)
     end
   end
 

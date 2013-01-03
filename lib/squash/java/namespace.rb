@@ -221,7 +221,7 @@ class Squash::Java::Namespace
 
   def method(klass, name)
     matches = name.match(METHOD_REGEX) or raise "Invalid method name #{name.inspect}"
-    return_type = type(matches[1])
+    return_type = argument(matches[1])
     method_name = matches[2]
     args        = matches[3].split(/,\s*/).map { |arg| argument(arg) }
     args = [] if matches[3].empty?
@@ -259,9 +259,9 @@ class Squash::Java::Namespace
   #   {Squash::Java::Method Method}.
 
   def argument(type_descriptor)
-    array     = type_descriptor[-2..-1] == '[]'
-    type_name = type_descriptor.sub(/\[\]$/, '')
-    Squash::Java::Argument.new type(type_name), array
+    dimensionality = type_descriptor.scan(/\[\]/).size
+    type_name      = type_descriptor.gsub(/\[\]/, '')
+    Squash::Java::Argument.new type(type_name), dimensionality
   end
 
   # Creates a new Argument for a given type descriptor, which can be fully or
@@ -276,11 +276,11 @@ class Squash::Java::Namespace
   #   {Squash::Java::Method Method}, or `nil` if the type is not recognized.
 
   def obfuscated_argument(type_descriptor)
-    array     = type_descriptor[-2..-1] == '[]'
-    type_name = type_descriptor.sub(/\[\]$/, '')
-    type      = obfuscated_type(type_name)
+    dimensionality = type_descriptor.scan(/\[\]/).size
+    type_name      = type_descriptor.gsub(/\[\]/, '')
+    type           = obfuscated_type(type_name)
     return nil unless type
-    Squash::Java::Argument.new type, array
+    Squash::Java::Argument.new type, dimensionality
   end
 end
 
@@ -510,7 +510,7 @@ class Squash::Java::Method
 
   def full_name
     args = arguments.map { |type| type.to_s }.join(', ')
-    "#{return_type.full_name} #{name}(#{args})"
+    "#{return_type.to_s} #{name}(#{args})"
   end
 
   # @private
@@ -524,26 +524,25 @@ class Squash::Java::Argument
   # @return [Squash::Java::Type] The argument type.
   attr_reader :type
 
-  # @return [true, false] `true` if the argument is an array, false if it is a
-  #   scalar.
-  attr_reader :array
-  alias array? array
+  # @return [Fixnum] The number of dimensions for vector values. A type of
+  #   `int[][]` has a dimensionality of 2. Scalars have a dimensionality of 0.
+  attr_reader :dimensionality
 
   # @private
-  def initialize(type, array=false)
-    @type  = type
-    @array = array
+  def initialize(type, dimensionality=0)
+    @type           = type
+    @dimensionality = dimensionality
   end
 
   # @private
   def ==(other)
     other.kind_of?(Squash::Java::Argument) &&
         type == other.type &&
-        array? == other.array?
+        dimensionality == other.dimensionality
   end
 
   # @return [String] The type's full name, with "[]" appended for arrays.
-  def to_s() "#{type.full_name}#{'[]' if array?}" end
+  def to_s() "#{type.full_name}#{'[]'*dimensionality}" end
 
   # @private
   def inspect() "#<#{self.class} #{to_s}>" end
