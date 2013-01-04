@@ -127,7 +127,7 @@ class Squash::Java::Namespace
 
   def add_method_alias(class_or_name, method_name, obfuscation)
     cl               = (class_or_name.kind_of?(Squash::Java::Class) ? class_or_name : klass(class_or_name))
-    meth             = method(cl, method_name)
+    meth             = java_method(cl, method_name)
     meth.obfuscation = obfuscation
     return meth
   end
@@ -219,7 +219,7 @@ class Squash::Java::Namespace
   #   full, unobfuscated types (e.g., "com.foo.Bar myMethod(com.foo.Baz, int[])".
   # @return [Squash::Java::Method] The corresponding method.
 
-  def method(klass, name)
+  def java_method(klass, name)
     matches = name.match(METHOD_REGEX) or raise "Invalid method name #{name.inspect}"
     return_type = argument(matches[1])
     method_name = matches[2]
