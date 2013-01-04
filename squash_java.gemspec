@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "squash_java"
-  s.version = "1.0.1"
+  s.version = "1.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tim Morgan"]
-  s.date = "2013-01-03"
+  s.date = "2013-01-04"
   s.description = "This gem includes a library that imports yGuard or ProGuard rename logs, and a binary that uploads the data to Squash."
   s.email = "tim@squareup.com"
   s.executables = ["squash_release", "deobfuscate"]
