@@ -37,7 +37,7 @@ class Squash::Java::Namespace
   # Creates a new empty Namespace.
 
   def initialize
-    @package_roots = Set.new
+    @package_roots = Array.new
   end
 
   # @overload find_files(root)
@@ -142,7 +142,7 @@ class Squash::Java::Namespace
     root_name = parts.shift
     root      = @package_roots.detect { |pkg| pkg.name == root_name } || begin
       pkg = Squash::Java::Package.new(root_name)
-      @package_roots << pkg
+      @package_roots << pkg unless @package_roots.include?(pkg)
       pkg
     end
     if parts.empty?
@@ -322,9 +322,9 @@ class Squash::Java::Package
   def initialize(name, parent=nil)
     @name   = name
     @parent = parent
-    @parent.children << self if @parent
-    @children = Set.new
-    @classes  = Set.new
+    @parent.children << self if @parent && !@parent.children.include?(self)
+    @children = Array.new
+    @classes  = Array.new
   end
 
   # **Finds** a package underneath this package.
@@ -432,11 +432,11 @@ class Squash::Java::Class < Squash::Java::Type
   # @private
   def initialize(parent, name)
     @parent       = parent
-    @java_methods = Set.new
+    @java_methods = Array.new
     @classes      = Array.new
     @name         = name
 
-    @parent.classes << self
+    @parent.classes << self unless @parent.classes.include?(self)
   end
 
   # @return [String] The name of this class (with package and parent class
@@ -496,12 +496,12 @@ class Squash::Java::Method
     @name        = name
     @return_type = return_type
     @arguments   = arguments
-    klass.java_methods << self
+    klass.java_methods << self unless klass.java_methods.include?(self)
   end
 
   # @private
   def add_argument(type)
-    @arguments << type
+    @arguments << type unless @arguments.include?(type)
     @arguments.size - 1
   end
 
