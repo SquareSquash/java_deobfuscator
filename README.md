@@ -96,3 +96,9 @@ In addition to using the rename map with Squash, you can also use the gem as
 a library, to perform deobfuscation for your own purposes (even unrelated to
 Squash). See the {Squash::Java::Namespace} class documentation for more
 information.
+
+You will need to add this gem to your Gemfile to use it as a library:
+
+```` ruby
+gem 'squash_java', :require => 'squash/java'
+````
