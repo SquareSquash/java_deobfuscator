@@ -29,7 +29,8 @@ end
 
 project_dir = Dir.getwd
 revision    = nil
-options     = {}
+version     = nil
+options     = {:success => [Net::HTTPSuccess, 422]}
 
 parser = OptionParser.new do |parser|
   parser.banner = "Usage: squash_release [options] YOUR_SQUASH_HOST YOUR_API_KEY ENVIRONMENT BUILD_NUMBER"
@@ -39,6 +40,7 @@ parser = OptionParser.new do |parser|
 
   parser.on('-p', '--project-dir F', "Specify a custom project directory (default current directory)") { |pd| project_dir = pd }
   parser.on('-r', '--revision R', "Specify a code revision that was deployed (default current revision)") { |r| revision = r }
+  parser.on('-v', '--product-version V', "Specify a human-readable version that was deployed") { |v| version = v }
 
   parser.on('-h', '--help', "Show this message") { puts parser; exit }
   parser.on('--version', "Display version number of this program") { puts "1.0.0"; exit }
@@ -63,6 +65,7 @@ Squash::Uploader.new(host, options).transmit '/api/1.0/deploy.json',
                                                  'deploy'      => {
                                                      'deployed_at' => Time.now,
                                                      'revision'    => revision,
-                                                     'build'       => build
+                                                     'build'       => build,
+                                                     'version'     => version
                                                  }
                                              }
