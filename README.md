@@ -67,10 +67,10 @@ This gem installs a command-line binary named `squash_release`. It is called in
 the following format:
 
 ````
-squash_release [options] <API key> <environment> <build number>
+squash_release [options] <Squash host> <API key> <environment> <build number>
 ````
 
-Example: `squash_release a9232f94-6c2d-45ae-8f9e-9add5bd7ff35 production 103 `
+Example: `squash_release http://your.squash.host a9232f94-6c2d-45ae-8f9e-9add5bd7ff35 production 103 `
 
 This binary is intended to be used as part of your release process, similar to
 `deobfuscate` (see above). Like `deobfuscate`, sensible defaults are provided
