@@ -1,4 +1,4 @@
-source :rubygems
+source 'https://rubygems.org'
 
 gem 'json'
 gem 'squash_uploader', '>= 1.0.1', :require => nil
