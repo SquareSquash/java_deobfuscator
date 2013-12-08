@@ -19,30 +19,30 @@ describe Squash::Java::RenameLog do
     it "should correctly parse a yGuard file" do
       @namespace = Squash::Java::RenameLog.new(File.join(File.dirname(__FILE__), 'fixtures', 'renamelog.xml')).parse
 
-      @namespace.obfuscated_package('com.hvilela.A').full_name.should eql('com.hvilela.drawer')
-      @namespace.obfuscated_class('com.hvilela.A.A').full_name.should eql('com.hvilela.drawer.Columns')
-      @namespace.obfuscated_class('com.hvilela.Wallpaperer$6').full_name.should eql('com.hvilela.Wallpaperer$6')
-      @namespace.obfuscated_class('com.hvilela.6').should be_nil
+      expect(@namespace.obfuscated_package('com.hvilela.A').full_name).to eql('com.hvilela.drawer')
+      expect(@namespace.obfuscated_class('com.hvilela.A.A').full_name).to eql('com.hvilela.drawer.Columns')
+      expect(@namespace.obfuscated_class('com.hvilela.Wallpaperer$6').full_name).to eql('com.hvilela.Wallpaperer$6')
+      expect(@namespace.obfuscated_class('com.hvilela.6')).to be_nil
 
-      @namespace.obfuscated_method(
+      expect(@namespace.obfuscated_method(
           @namespace.klass('com.hvilela.Wallpaperer'),
           'void A(java.io.File)'
-      ).full_name.should eql('void addDirectory(java.io.File)')
-      @namespace.obfuscated_method(
+      ).full_name).to eql('void addDirectory(java.io.File)')
+      expect(@namespace.obfuscated_method(
           @namespace.klass('com.hvilela.Wallpaperer'),
           'javax.swing.JSpinner B(com.hvilela.Wallpaperer)'
-      ).full_name.should eql('javax.swing.JSpinner access$1(com.hvilela.Wallpaperer)')
+      ).full_name).to eql('javax.swing.JSpinner access$1(com.hvilela.Wallpaperer)')
     end
 
     it "should correctly parse a ProGuard file" do
       @namespace = Squash::Java::RenameLog.new(File.join(File.dirname(__FILE__), 'fixtures', 'mapping.txt')).parse
 
-      @namespace.obfuscated_class('com.example.account.manager.client.d').full_name.should eql('com.example.account.manager.client.AsyncPost')
-      @namespace.obfuscated_class('com.example.account.manager.client.k').full_name.should eql('com.example.account.manager.client.AddFoodLog$1')
-      @namespace.obfuscated_method(
+      expect(@namespace.obfuscated_class('com.example.account.manager.client.d').full_name).to eql('com.example.account.manager.client.AsyncPost')
+      expect(@namespace.obfuscated_class('com.example.account.manager.client.k').full_name).to eql('com.example.account.manager.client.AddFoodLog$1')
+      expect(@namespace.obfuscated_method(
           @namespace.klass('com.example.account.manager.client.AsyncPost'),
           'java.lang.Void a()'
-      ).full_name.should eql('java.lang.Void doInBackground$10299ca()')
+      ).full_name).to eql('java.lang.Void doInBackground$10299ca()')
     end
   end
 end

@@ -23,7 +23,7 @@ describe Squash::Java::Namespace do
     end
 
     it "should set class paths correctly" do
-      Find.stub!(:find).
+      allow(Find).to receive(:find).
           and_yield('/path/to/project/.backup').
           and_yield('/path/to/project/.backup/foo').
           and_yield('/path/to/project/.backup/foo/Bar.java').
@@ -37,11 +37,11 @@ describe Squash::Java::Namespace do
           and_yield('/path/to/project/source2').
           and_yield('/path/to/project/source2/foo').
           and_yield('/path/to/project/source2/foo/Baz.java')
-      Find.stub!(:prune)
+      allow(Find).to receive(:prune)
       @namespace.find_files('/path/to/project/')
 
-      @namespace.path_for_class('foo.Bar').should eql('source1/foo/Bar.java')
-      @namespace.path_for_class('foo.Baz').should eql('source2/foo/Baz.java')
+      expect(@namespace.path_for_class('foo.Bar')).to eql('source1/foo/Bar.java')
+      expect(@namespace.path_for_class('foo.Baz')).to eql('source2/foo/Baz.java')
     end
   end
 
@@ -50,10 +50,10 @@ describe Squash::Java::Namespace do
 
     it "should create a Package" do
       pkg = @namespace.add_package_alias('com.foo.bar', 'A')
-      pkg.should be_kind_of(Squash::Java::Package)
-      pkg.name.should eql('bar')
-      pkg.parent.full_name.should eql('com.foo')
-      pkg.obfuscation.should eql('A')
+      expect(pkg).to be_kind_of(Squash::Java::Package)
+      expect(pkg.name).to eql('bar')
+      expect(pkg.parent.full_name).to eql('com.foo')
+      expect(pkg.obfuscation).to eql('A')
     end
   end
 
@@ -62,11 +62,11 @@ describe Squash::Java::Namespace do
 
     it "should create a Class" do
       cl = @namespace.add_class_alias('com.foo.Bar', 'A')
-      cl.should be_kind_of(Squash::Java::Class)
-      cl.name.should eql('Bar')
-      cl.parent.should be_kind_of(Squash::Java::Package)
-      cl.parent.full_name.should eql('com.foo')
-      cl.obfuscation.should eql('A')
+      expect(cl).to be_kind_of(Squash::Java::Class)
+      expect(cl.name).to eql('Bar')
+      expect(cl.parent).to be_kind_of(Squash::Java::Package)
+      expect(cl.parent.full_name).to eql('com.foo')
+      expect(cl.obfuscation).to eql('A')
     end
   end
 
@@ -77,32 +77,32 @@ describe Squash::Java::Namespace do
       cl   = @namespace.add_class_alias('com.foo.Bar', 'A')
       meth = @namespace.add_method_alias(cl, 'com.foo.Bar finagle(com.foo.Bar, int[])', 'a')
 
-      meth.should be_kind_of(Squash::Java::Method)
-      meth.name.should eql('finagle')
-      meth.obfuscation.should eql('a')
-      meth.klass.full_name.should eql('com.foo.Bar')
-      meth.return_type.to_s.should eql('com.foo.Bar')
+      expect(meth).to be_kind_of(Squash::Java::Method)
+      expect(meth.name).to eql('finagle')
+      expect(meth.obfuscation).to eql('a')
+      expect(meth.klass.full_name).to eql('com.foo.Bar')
+      expect(meth.return_type.to_s).to eql('com.foo.Bar')
 
-      meth.arguments.size.should eql(2)
-      meth.arguments.first.type.full_name.should eql('com.foo.Bar')
-      meth.arguments.first.dimensionality.should eql(0)
-      meth.arguments.last.type.full_name.should eql('int')
-      meth.arguments.last.dimensionality.should eql(1)
+      expect(meth.arguments.size).to eql(2)
+      expect(meth.arguments.first.type.full_name).to eql('com.foo.Bar')
+      expect(meth.arguments.first.dimensionality).to eql(0)
+      expect(meth.arguments.last.type.full_name).to eql('int')
+      expect(meth.arguments.last.dimensionality).to eql(1)
     end
     
     it "should handle vector values appropriately" do
       cl   = @namespace.add_class_alias('com.foo.Bar', 'A')
       meth = @namespace.add_method_alias(cl, 'int[][] finagle(com.foo.Bar)', 'a')
       
-      meth.should be_kind_of(Squash::Java::Method)
-      meth.name.should eql('finagle')
-      meth.obfuscation.should eql('a')
-      meth.klass.full_name.should eql('com.foo.Bar')
-      meth.return_type.to_s.should eql('int[][]')
+      expect(meth).to be_kind_of(Squash::Java::Method)
+      expect(meth.name).to eql('finagle')
+      expect(meth.obfuscation).to eql('a')
+      expect(meth.klass.full_name).to eql('com.foo.Bar')
+      expect(meth.return_type.to_s).to eql('int[][]')
 
-      meth.arguments.size.should eql(1)
-      meth.arguments.first.type.full_name.should eql('com.foo.Bar')
-      meth.arguments.first.dimensionality.should eql(0)
+      expect(meth.arguments.size).to eql(1)
+      expect(meth.arguments.first.type.full_name).to eql('com.foo.Bar')
+      expect(meth.arguments.first.dimensionality).to eql(0)
     end
   end
 
@@ -113,13 +113,13 @@ describe Squash::Java::Namespace do
     end
 
     it "should locate a method by obfuscated name" do
-      @namespace.obfuscated_method(@namespace.klass('com.foo.Bar'), 'int a(int[])').should eql(@method)
+      expect(@namespace.obfuscated_method(@namespace.klass('com.foo.Bar'), 'int a(int[])')).to eql(@method)
     end
 
     it "should return nil if nothing was found" do
-      @namespace.obfuscated_method(@namespace.klass('com.foo.Bar'), 'int a()').should be_nil
-      @namespace.obfuscated_method(@namespace.klass('com.foo.Bar'), 'int a(int)').should be_nil
-      @namespace.obfuscated_method(@namespace.klass('com.foo.Bar'), 'int b(int[])').should be_nil
+      expect(@namespace.obfuscated_method(@namespace.klass('com.foo.Bar'), 'int a()')).to be_nil
+      expect(@namespace.obfuscated_method(@namespace.klass('com.foo.Bar'), 'int a(int)')).to be_nil
+      expect(@namespace.obfuscated_method(@namespace.klass('com.foo.Bar'), 'int b(int[])')).to be_nil
     end
   end
 end
